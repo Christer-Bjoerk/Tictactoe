@@ -7,6 +7,8 @@ char board[3][3] = { {'1','2','3'},{'4','5','6'},{'7','8','9'} };
 int choice;
 int row, column;
 
+int playedTurns = 1;
+
 char turn = 'X';
 
 bool draw = false; 
@@ -54,23 +56,31 @@ void SwitchTurn()
 		cout << "Invalid move";
 		break;
 	}
-
+	
+	// Check if the row & column isn't occupied
 	if (turn == 'X' && board[row][column] != 'X' && board[row][column] != 'O')
 	{
 		board[row][column] = 'X';
 		turn = 'O';
+		playedTurns++;
+
+		Display_board();
 	}
 	else if (turn == 'O' && board[row][column] != 'O' && board[row][column] != 'X')
 	{
 		board[row][column] = 'O';
 		turn = 'X';
+		playedTurns++;
+
+		Display_board();
 	}
-	else
+	else if(turn == 'X' && board[row][column] == 'O' || turn == 'X' && board[row][column] == 'X'||
+			turn == 'O' && board[row][column] == 'O' || turn == 'O' && board[row][column] == 'X')
 	{
 		cout << "Box already filled!\n Please choose another!! \n";
 		Player_turn();
 	}
-};
+}
 
 void Player_turn()
 {
@@ -85,7 +95,6 @@ void Player_turn()
 	cin >> choice;
 
 	SwitchTurn();
-	Display_board();
 };
 
 bool Gameover() 
@@ -93,20 +102,16 @@ bool Gameover()
 	// Check for win for simple rows & columns
 	for (int i = 0; i < 3; i++)
 	{
-		if (board[i][0] == board[i][1] && 
-			board[i][0] == board[i][2] || 
-			board[0][i] == board[1][i] && 
-			board[0][i] == board[2][i])
+		if (board[i][0] == board[i][1] && board[i][0] == board[i][2] || 
+			board[0][i] == board[1][i] && board[0][i] == board[2][i])
 		{
 			return false;
 		}
 	}
 
-	// Check for win diagonal
-	if (board[0][0] == board[1][1] &&
-		board[0][0] == board[2][2] ||
-		board[0][2] == board[1][1] &&
-		board[0][2] == board[2][0])
+	// Check for a win diagonal
+	if (board[0][0] == board[1][1] && board[0][0] == board[2][2] ||
+		board[0][2] == board[1][1] && board[0][2] == board[2][0])
 	{
 		return false;
 	}
@@ -116,15 +121,18 @@ bool Gameover()
 	{
 		for (int j = 0; j < 3; j++)
 		{
-			if (board[i][j] != 'X' && board[i][j] != '0')
+			if (board[i][j] != 'X' && board[i][j] != '0' && playedTurns <= 9)
 			{
 				return true;
+			}
+			else if (playedTurns > 9)
+			{
+				draw = true;
+				return false;
 			}
 		}
 	}
 
-	// Never called
-	draw = true;
 	return false;
 }
 
@@ -142,6 +150,10 @@ void DisplayWinner()
 	{
 		cout << "\n\n Congratulations! Player with 'X' has won the game";
 	}
+	else if (turn == 'O' && draw || turn == 'X' && draw)
+	{
+		cout << "\n\n It's a draw";
+	}
 }
 
 int main() 
@@ -155,7 +167,6 @@ int main()
 	while (Gameover())
 	{
 		Player_turn();
-		SwitchTurn();
 	}
 
 	DisplayWinner();
