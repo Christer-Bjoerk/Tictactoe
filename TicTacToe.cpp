@@ -1,9 +1,9 @@
 #include <iostream>
 #include <stdlib.h>
+#include "Board.h"
 
 using namespace std;
 
-char board[3][3] = { {'1','2','3'},{'4','5','6'},{'7','8','9'} };
 int choice;
 int row, column;
 
@@ -15,20 +15,7 @@ bool draw = false;
 
 void Player_turn();
 
-
-void Display_board()
-{
-	// Drawing the board using characters
-	cout << " PLAYER 1 [X]\t PLAYER 2 [O]\n";
-	cout << "\t     |     |    \n";
-	cout << "\t  " << board[0][0] << "  |  " <<board[0][1] << "  |  " << board[0][2] << " \n";
-	cout << "\t_____|_____|_____\n";
-	cout << "\t     |     |    \n";
-	cout << "\t  " << board[1][0] << "  |  " << board[1][1] << "  |  " << board[1][2] << " \n";
-	cout << "\t_____|_____|_____\n";
-	cout << "\t     |     |    \n";
-	cout << "\t  " << board[2][0] << "  |  " << board[2][1] << "  |  " << board[2][2] << " \n";
-}
+Board board;
 
 void SwitchTurn()
 {
@@ -58,24 +45,25 @@ void SwitchTurn()
 	}
 	
 	// Check if the row & column isn't occupied
-	if (turn == 'X' && board[row][column] != 'X' && board[row][column] != 'O')
+	if (turn == 'X' && board.boardArea[row][column] != 'X' && board.boardArea[row][column] != 'O')
 	{
-		board[row][column] = 'X';
+		board.
+		boardArea[row][column] = 'X';
 		turn = 'O';
 		playedTurns++;
 
-		Display_board();
+		board.DisplayBoard();
 	}
-	else if (turn == 'O' && board[row][column] != 'O' && board[row][column] != 'X')
+	else if (turn == 'O' && board.boardArea[row][column] != 'O' && board.boardArea[row][column] != 'X')
 	{
-		board[row][column] = 'O';
+		board.boardArea[row][column] = 'O';
 		turn = 'X';
 		playedTurns++;
 
-		Display_board();
+		board.DisplayBoard();
 	}
-	else if(turn == 'X' && board[row][column] == 'O' || turn == 'X' && board[row][column] == 'X'||
-			turn == 'O' && board[row][column] == 'O' || turn == 'O' && board[row][column] == 'X')
+	else if(turn == 'X' && board.boardArea[row][column] == 'O' || turn == 'X' && board.boardArea[row][column] == 'X'||
+			turn == 'O' && board.boardArea[row][column] == 'O' || turn == 'O' && board.boardArea[row][column] == 'X')
 	{
 		cout << "Box already filled!\n Please choose another!! \n";
 		Player_turn();
@@ -102,16 +90,16 @@ bool Gameover()
 	// Check for win for simple rows & columns
 	for (int i = 0; i < 3; i++)
 	{
-		if (board[i][0] == board[i][1] && board[i][0] == board[i][2] || 
-			board[0][i] == board[1][i] && board[0][i] == board[2][i])
+		if (board.boardArea[i][0] == board.boardArea[i][1] && board.boardArea[i][0] == board.boardArea[i][2] ||
+			board.boardArea[0][i] == board.boardArea[1][i] && board.boardArea[0][i] == board.boardArea[2][i])
 		{
 			return false;
 		}
 	}
 
 	// Check for a win diagonal
-	if (board[0][0] == board[1][1] && board[0][0] == board[2][2] ||
-		board[0][2] == board[1][1] && board[0][2] == board[2][0])
+	if (board.boardArea[0][0] == board.boardArea[1][1] && board.boardArea[0][0] == board.boardArea[2][2] ||
+		board.boardArea[0][2] == board.boardArea[1][1] && board.boardArea[0][2] == board.boardArea[2][0])
 	{
 		return false;
 	}
@@ -121,7 +109,7 @@ bool Gameover()
 	{
 		for (int j = 0; j < 3; j++)
 		{
-			if (board[i][j] != 'X' && board[i][j] != '0' && playedTurns <= 9)
+			if (board.boardArea[i][j] != 'X' && board.boardArea[i][j] != '0' && playedTurns <= 9)
 			{
 				return true;
 			}
@@ -162,7 +150,7 @@ int main()
 	cout << "\n\t\t\t\t FOR 2 PLAYERS \n\t\t\t";
 
 	// Display the raw board
-	Display_board();
+	board.DisplayBoard();
 
 	while (Gameover())
 	{
