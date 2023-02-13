@@ -42,14 +42,14 @@ void Board::UpdateBoard(int boardNumber)
 	}
 
 	// Check if the board has the character or not
-	if (isBoardOccupied())
+	if (IsBoardOccupied())
 	{
 		// if it's occupied, ask the player to choose another space on the board
-		cout << "Space is occupied";
+		cout << "Space is occupied ";
 
 		//Retry;
 	}
-	else if(!isBoardOccupied())
+	else if(!IsBoardOccupied())
 	{	
 		// if not replace the character and update the board
 		for (int i = 0; i < 2; i++)
@@ -72,7 +72,7 @@ void Board::UpdateBoard(int boardNumber)
 	}
 }
 
-bool Board::isBoardOccupied() 
+bool Board::IsBoardOccupied() 
 {
 	return (boardArea[row][column] == 'X' || boardArea[row][column] == '0') ? true : false;
 }
