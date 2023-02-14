@@ -2,6 +2,23 @@
 
 bool GameManager::GameOver()
 {
+	// Check if the game is ongoing
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			if (playedTurns > 9 && !CheckWin())
+			{
+				draw = true;
+				return true;
+			}
+		}
+	}
+    return CheckWin();
+}
+
+bool GameManager::CheckWin() 
+{
 	// Check for a straight win
 	for (int i = 0; i < 3; i++)
 	{
@@ -18,17 +35,4 @@ bool GameManager::GameOver()
 	{
 		return true;
 	}
-
-	// Check if the game is ongoing
-	for (int i = 0; i < 3; i++)
-	{
-		for (int j = 0; j < 3; j++)
-		{
-			if (target->boardArea[i][j] != 'X' && target->boardArea[i][j] != '0')
-			{
-				return false;
-			}
-		}
-	}
-    return false;
 }

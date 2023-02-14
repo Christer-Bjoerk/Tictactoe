@@ -51,24 +51,29 @@ void Board::UpdateBoard(int boardNumber)
 	}
 	else if(!IsBoardOccupied())
 	{	
-		// if not replace the character and update the board
-		for (int i = 0; i < 2; i++)
-		{
-			if (i == 0)
-			{
-				boardArea[row][column] = 'X';
-				// Update board
-				Display_board();
-				return;
-			}
-			else if (i == 1)
-			{
-				boardArea[row][column] = 'O';
-				// Update board
-				Display_board();
-				return;
-			}
-		}
+
+		// if player 1
+
+		// if player 2
+
+		//// if not replace the character and update the board
+		//for (int i = 0; i < 2; i++)
+		//{
+		//	if (i == 0)
+		//	{
+		//		boardArea[row][column] = 'X';
+		//		// Update board
+		//		Display_board();
+		//		return;
+		//	}
+		//	else if (i == 1)
+		//	{
+		//		boardArea[row][column] = 'O';
+		//		// Update board
+		//		Display_board();
+		//		return;
+		//	}
+		//}
 	}
 }
 
