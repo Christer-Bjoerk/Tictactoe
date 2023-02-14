@@ -12,7 +12,8 @@ int main()
 	Player currentPlayer;
 	GameManager gm;
 
-	gm.SetTarget(&board);
+	gm.SetBoard(&board);
+	gm.SetPlayers(&currentPlayer);
 	currentPlayer.SetTarget(&board);
 
 	cout << "\t\t\t T I C K -- T A C -- T O E -- G A M E \t\t\t";

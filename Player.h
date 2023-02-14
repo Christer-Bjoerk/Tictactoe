@@ -1,3 +1,6 @@
+#ifndef PLAYER_H
+#define PLAYER_H
+
 #include "Board.h"
 
 class Player
@@ -13,4 +16,5 @@ private:
 	Board* target;
 	int choice;
 };
+#endif // !PLAYER_H
 

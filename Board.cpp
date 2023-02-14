@@ -53,6 +53,10 @@ void Board::UpdateBoard(int boardNumber)
 	{	
 
 		// if player 1
+		if ()
+		{
+
+		}
 
 		// if player 2
 
