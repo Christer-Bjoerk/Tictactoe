@@ -40,7 +40,7 @@ void Board::UpdateBoard(char player, int choice)
 	case 9: row = 2; column = 2;
 		break;
 	default:
-		cout << "Invalid move";
+		cout << "Invalid move \n\n";
 		break;
 	}
 	
@@ -56,7 +56,6 @@ void Board::SwitchTurn(char player,int row, int column)
 		boardArea[row][column] = 'X';
 		// Update board
 		DisplayBoard();
-
 		// Switch turn
 		player = 'O';
 		SetTurn(player);
@@ -67,13 +66,12 @@ void Board::SwitchTurn(char player,int row, int column)
 		boardArea[row][column] = 'O';
 		// Update board
 		DisplayBoard();
-
 		// Switch turn
 		player = 'X';
 		SetTurn(player);
 	}
 	else
 	{
-		std::cout << "Invalid move ";
+		std::cout << "Invalid move \n\n";
 	}
 }
