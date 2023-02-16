@@ -5,11 +5,11 @@ void Player::PlayerTurn()
 {
 	if (turn == 'X')
 	{
-		std::cout << "Player 1's turn" << turn;
+		std::cout << "Player 1's turn ";
 	}
 	else if (turn == 'O')
 	{
-		std::cout << "Player 2's turn";
+		std::cout << "Player 2's turn ";
 	}
 
 	std::cin >> choice;

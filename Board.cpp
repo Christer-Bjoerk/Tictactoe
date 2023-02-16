@@ -72,4 +72,8 @@ void Board::SwitchTurn(char player,int row, int column)
 		player = 'X';
 		SetTurn(player);
 	}
+	else
+	{
+		std::cout << "Invalid move ";
+	}
 }
