@@ -17,6 +17,7 @@ void Board::DisplayBoard()
 	cout << "\t  " << boardArea[2][0] << "  |  " << boardArea[2][1] << "  |  " << boardArea[2][2] << " \n";
 }
 
+// Update the board to show where the player have placed their markers
 void Board::UpdateBoard(char player, int choice)
 {
 	switch (choice)
@@ -44,10 +45,10 @@ void Board::UpdateBoard(char player, int choice)
 		break;
 	}
 	
-	// needs the player turn
 	SwitchTurn(player, row, column);
 }
 
+// Switch turns
 void Board::SwitchTurn(char player,int row, int column) 
 {
 	if (player == 'X' && boardArea[row][column] != 'X' && boardArea[row][column] != 'O')

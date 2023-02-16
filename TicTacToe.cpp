@@ -27,10 +27,10 @@ int main()
 		// Player 1 input
 		player.PlayerTurn();
 
-		// Get the value of choice
+		// Get the value of the player's choice
 		choice = player.GetChoice();
 
-		// Update the board
+		// Update the board with the new symbol
 		board.UpdateBoard(turn, choice);
 
 		// Update the game manager
@@ -39,7 +39,7 @@ int main()
 		// Switch player turn
 		turn = board.GetTurn();
 
-		// The other player gets their turn
+		// The other player plays
 		player.SetTurn(turn);
 	}
 	return 0;
