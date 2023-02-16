@@ -34,7 +34,7 @@ int main()
 		board.UpdateBoard(turn, choice);
 
 		// Update the game manager
-		gameManager.UpdateBoard(turn, board.GetRow(), board.GetColumn());
+		gameManager.UpdateGameProgress(turn, board.GetRow(), board.GetColumn());
 
 		// Switch player turn
 		turn = board.GetTurn();

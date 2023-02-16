@@ -1,10 +1,11 @@
 #include "GameManager.h"
 #include <iostream>
 
-void GameManager::UpdateBoard(char& turn, int& row, int& column)
+void GameManager::UpdateGameProgress(char& turn, int& row, int& column)
 {
 	// Update the board
 	boardArea[row][column] = turn;
+	currentTurn = turn;
 }
 
 bool GameManager::GameOver() 
@@ -17,6 +18,31 @@ bool GameManager::GameOver()
 			std::cout << boardArea[i][j];
 		}
 	}*/
+
+	// Check for a straight win
+	for (int i = 0; i < 3; i++)
+	{
+		if  (boardArea[i][0] == boardArea[i][1] && boardArea[i][0] == boardArea[i][2] ||
+			 boardArea[0][i] == boardArea[1][i] && boardArea[0][i] == boardArea[2][i])
+		{
+			std::cout << "Game is over \n";
+
+			DisplayWinner();
+
+			return true;
+		}
+	}
+
+	// Check for a diagonal win
+	if (boardArea[0][0] == boardArea[1][1] && boardArea[0][0] == boardArea[2][2] ||
+		boardArea[0][2] == boardArea[1][1] && boardArea[0][2] == boardArea[2][0])
+	{
+		std::cout << "Game is over \n";
+
+		DisplayWinner();
+
+		return true;
+	}
 
 	// Check if the game is ongoing
 	for (int i = 0; i < 3; i++)
@@ -40,38 +66,16 @@ bool GameManager::GameOver()
 		}
 	}
 
-
-	// Check for a straight win
-	for (int i = 0; i < 3; i++)
-	{
-		if  (boardArea[i][0] == boardArea[i][1] && boardArea[i][0] == boardArea[i][2] ||
-			 boardArea[0][i] == boardArea[1][i] && boardArea[0][i] == boardArea[2][i])
-		{
-			std::cout << "Game is over \n";
-
-			return true;
-		}
-	}
-
-	// Check for a diagonal win
-	if (boardArea[0][0] == boardArea[1][1] && boardArea[0][0] == boardArea[2][2] ||
-		boardArea[0][2] == boardArea[1][1] && boardArea[0][2] == boardArea[2][0])
-	{
-		std::cout << "Game is over \n";
-
-		return true;
-	}
-
 	return false;
 }
 
-void GameManager::DisplayWinner(char player) 
+void GameManager::DisplayWinner() 
 {
-	if (player == 'X')
+	if (currentTurn == 'X')
 	{
 		std::cout << "Player 1 won ";
 	}
-	else if (player == 'O')
+	else if (currentTurn == 'O')
 	{
 		std::cout << "Player 2 won ";
 	}
