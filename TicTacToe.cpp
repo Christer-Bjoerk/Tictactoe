@@ -47,8 +47,7 @@ void SwitchTurn()
 	// Check if the row & column isn't occupied
 	if (turn == 'X' && board.boardArea[row][column] != 'X' && board.boardArea[row][column] != 'O')
 	{
-		board.
-		boardArea[row][column] = 'X';
+		board.boardArea[row][column] = 'X';
 		turn = 'O';
 		playedTurns++;
 
